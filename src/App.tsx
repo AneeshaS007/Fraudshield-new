@@ -62,31 +62,27 @@ export default function App() {
         setSession(null);
       }
 
-      const rawPath = window.location.pathname.replace(/^\//, '');
+      const segments = window.location.pathname.split('/').filter(Boolean);
+      const currentSegment = segments.length > 0 ? segments[segments.length - 1] : '';
+      const protectedPages = ['dashboard', 'scan', 'pay', 'transactions', 'transaction-detail', 'profile', 'report', 'help', 'traders'];
 
-      if (rawPath === 'auth') {
+      if (currentSegment === 'auth') {
         setActivePage('auth');
-      } else if (
-        ['dashboard', 'scan', 'pay', 'transactions', 'transaction-detail', 'profile', 'report', 'help', 'traders'].includes(rawPath)
-      ) {
+      } else if (protectedPages.includes(currentSegment)) {
         if (!activeUser) {
           // If the user is not logged in, do not allow access to protected dashboards
           setActivePage('auth');
           setPageParams({
             mode: 'signin',
-            returnTo: rawPath,
+            returnTo: currentSegment,
             message: 'Please sign in to access this protected dashboard.',
           });
-          window.history.replaceState({}, '', '/auth');
         } else {
-          setActivePage(rawPath as ActivePage);
+          setActivePage(currentSegment as ActivePage);
         }
       } else {
-        // Default: display the existing homepage first
+        // Default: display the homepage
         setActivePage('home');
-        if (window.location.pathname !== '/' && window.location.pathname !== '/home') {
-          window.history.replaceState({}, '', '/');
-        }
       }
     }
 
@@ -112,7 +108,8 @@ export default function App() {
     });
 
     const handlePopState = () => {
-      const p = window.location.pathname.replace(/^\//, '');
+      const segments = window.location.pathname.split('/').filter(Boolean);
+      const p = segments.length > 0 ? segments[segments.length - 1] : '';
       const hasActiveSession = Boolean(localStorage.getItem('fraudshield_active_session'));
 
       if (p === '' || p === 'home') {
@@ -187,18 +184,12 @@ export default function App() {
       setActivePage('auth');
       setPageParams({ mode: 'signin', returnTo: targetDashboard, message: msg });
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState({}, '', '/auth');
       return;
     }
 
     setActivePage(page);
     setPageParams(params || null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    const targetUrl = page === 'home' ? '/' : `/${page}`;
-    if (window.location.pathname !== targetUrl) {
-      window.history.pushState({}, '', targetUrl);
-    }
   }
 
   // 1. Render standalone Homepage (Default entry point)

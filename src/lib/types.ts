@@ -89,11 +89,12 @@ export interface SystemStatus {
     online: boolean;
     testAuc: number;
     name: string;
+    trainingDataset?: string;
   };
   sms: {
     connected: boolean;
     senderId: string;
-    provider: 'MSG91';
+    provider: 'MSG91' | string;
     configured: boolean;
     hasFlows: {
       paymentSuccess: boolean;
@@ -136,5 +137,6 @@ export interface SmsConfig {
   isConfigured?: boolean;
   hasEnvKey?: boolean;
   setupMessage?: string;
+  missingReason?: string;
 }
 
