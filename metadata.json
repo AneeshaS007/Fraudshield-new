@@ -1,0 +1,10 @@
+{
+  "name": "Remix FraudShield — Know the Risk Before You Pay",
+  "description": "FraudShield checks UPI payments for fraud risk before you pay: scan a QR, verify the receiver, and see a clear risk score with real-time SMS notifications.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

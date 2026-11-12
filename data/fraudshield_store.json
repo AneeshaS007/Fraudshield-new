@@ -1,0 +1,110 @@
+{
+  "profile": {
+    "id": "usr_default_fs",
+    "email": "user@example.com",
+    "name": "Shield User",
+    "phone": "9876543210",
+    "phone_verified": true,
+    "sms_notifications": true,
+    "sms_payment_success": true,
+    "sms_payment_failure": true,
+    "sms_fraud_alert": true,
+    "created_at": "2026-11-10T06:23:59.715Z"
+  },
+  "transactions": [
+    {
+      "id": "txn_fs_mwab1883",
+      "user_id": "usr_default_fs",
+      "payee_vpa": "kirana.store@okhdfcbank",
+      "payee_name": "Sharma General Store",
+      "amount": 350,
+      "note": "Grocery purchase",
+      "status": "successful",
+      "provider": "upi_intent",
+      "provider_payment_id": "UPI902348123984",
+      "upi_ref_id": "408923481239",
+      "verification_status": "provider_verified",
+      "risk_score": 12,
+      "risk_tier": "safe",
+      "risk_factors": [
+        "Verified merchant QR",
+        "Normal velocity",
+        "No scam keywords"
+      ],
+      "sms_status": "pending_config",
+      "sms_sent_to": "9876543210",
+      "sms_error": "MSG91_AUTH_KEY is not configured in backend environment",
+      "created_at": "2026-11-10T04:23:59.715Z",
+      "verified_at": "2026-11-10T04:23:59.715Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep_1",
+      "vpa": "lottery.win99@ybl",
+      "phone": "9870001122",
+      "payee_name": "Fast Prize Dispatch",
+      "category": "lottery_scam",
+      "description": "Sent SMS claiming I won ₹25 Lakhs, demanded ₹2500 processing fee.",
+      "amount_lost": 2500,
+      "created_at": "2026-11-08T06:23:59.715Z"
+    },
+    {
+      "id": "rep_2",
+      "vpa": "electricity.bill.desk@okaxis",
+      "phone": "9811223344",
+      "payee_name": "Electricity Urgent Desk",
+      "category": "phishing",
+      "description": "Impersonated State Electricity Board threatening power cutoff tonight.",
+      "amount_lost": 0,
+      "created_at": "2026-11-05T06:23:59.715Z"
+    }
+  ],
+  "smsLogs": [
+    {
+      "id": "sms_mwc0yxab",
+      "timestamp": "2026-11-11T11:17:48.419Z",
+      "mobile": "9876543210",
+      "type": "test",
+      "status": "pending_config",
+      "textSnippet": "FraudShield: Real-time SMS alert test successful on 4:47:48 pm IST. Your UPI transfers are protected.",
+      "error": "MSG91 DLT Flow ID is missing for this SMS type. DLT regulation in India requires an approved template Flow ID (e.g. MSG91_FLOW_PAYMENT_SUCCESS).",
+      "provider": "MSG91"
+    },
+    {
+      "id": "sms_mwc0yl6b",
+      "timestamp": "2026-11-11T11:17:32.723Z",
+      "mobile": "9876543210",
+      "type": "test",
+      "status": "pending_config",
+      "textSnippet": "FraudShield: Real-time SMS alert test successful on 4:47:32 pm IST. Your UPI transfers are protected.",
+      "error": "MSG91_AUTH_KEY is missing in backend environment variables. Please configure MSG91_AUTH_KEY in your server environment or Personal User settings to send real cellular SMS.",
+      "provider": "MSG91"
+    },
+    {
+      "id": "sms_mwab1884",
+      "timestamp": "2026-11-10T06:23:59.716Z",
+      "mobile": "9876543210",
+      "type": "fraud_alert",
+      "status": "pending_config",
+      "textSnippet": "FraudShield ALERT: High risk detected for transfer of INR 2500 to lottery.win99@ybl. Reasons: Flagged in 1 community fraud and cyber reports. Avoid transfer. Helpline: 1930.",
+      "error": "MSG91_AUTH_KEY missing in server secrets. Add MSG91 credentials to send real cellular SMS.",
+      "provider": "MSG91"
+    },
+    {
+      "id": "sms_init_01",
+      "timestamp": "2026-11-10T04:23:59.715Z",
+      "mobile": "9876543210",
+      "type": "payment_success",
+      "status": "pending_config",
+      "textSnippet": "FraudShield: INR 350 sent to Sharma General Store. Verified safe. Txn: 408923481239.",
+      "error": "MSG91_AUTH_KEY is not configured in backend environment. Real cellular SMS dispatch requires MSG91_AUTH_KEY.",
+      "provider": "MSG91"
+    }
+  ],
+  "smsConfig": {
+    "authKey": "",
+    "senderId": "FRDSHD",
+    "provider": "MSG91"
+  }
+}

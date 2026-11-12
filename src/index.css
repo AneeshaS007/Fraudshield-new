@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --radius: 1rem;
+    
+    /* Page Canvas Background - Light Grey (#F5F5F5) */
+    --background: #F5F5F5;
+    --background-2: #EAE5E2;
+    --foreground: #302824;
+    
+    /* Main Cards & Content Surfaces - Dusty Beige (#D7CCC8) Cards with Earth Brown Borders */
+    --card: #D7CCC8;
+    --card-foreground: #302824;
+    --popover: #D7CCC8;
+    --popover-foreground: #302824;
+    
+    /* Clickable Primary Buttons - Earth Brown (#8D6E63) with White text */
+    --primary: #8D6E63;
+    --primary-foreground: #FFFFFF;
+    
+    /* Secondary Elements & Buttons - Warm Taupe (#A1887F) */
+    --secondary: #A1887F;
+    --secondary-foreground: #302824;
+    
+    /* Champagne & Brand Accents - Earth Brown / Warm Taupe */
+    --champagne: #8D6E63;
+    --champagne-foreground: #FFFFFF;
+    
+    /* Muted Surfaces & Section Highlights - Warm Ivory (#EFEBE9) */
+    --muted: #EFEBE9;
+    --muted-foreground: #524641;
+    --accent: #EFEBE9;
+    --accent-foreground: #302824;
+    
+    /* Fraud Risk & Destruction - Muted Red-Brown for Fraud Alerts */
+    --destructive: #8C3B32;
+    --destructive-foreground: #FFFFFF;
+    
+    /* Outlines & Dividers - Earth Brown Highlight Borders (#8D6E63 / #A1887F) */
+    --border: #8D6E63;
+    --input: #A1887F;
+    --ring: #8D6E63;
+    
+    /* Status Indicators */
+    --safe: #4A7C59;       /* Muted brown-green for safe transactions */
+    --medium: #B87A30;     /* Warm amber for caution */
+    --high: #8C3B32;       /* Earth brown / muted red-brown for fraud alert */
+    --steel: #A1887F;      /* Warm taupe */
+    
+    /* Legacy Mappings */
+    --cyan: #A1887F;
+    --violet: #8D6E63;
+    
+    /* Glass Containers & Shadows - Dusty Beige Glass with Earth Brown Border */
+    --glass: rgba(215, 204, 200, 0.96);
+    --glass-border: #8D6E63;
+    --card-shadow: 0 4px 20px -2px rgba(48, 40, 36, 0.12), 0 1px 3px rgba(48, 40, 36, 0.08);
+    --shadow-subtle: 0 2px 8px rgba(141, 110, 99, 0.15);
+    --shadow-button: 0 4px 14px rgba(141, 110, 99, 0.3);
+  }
+
+  /* Accessibility High-Contrast Dark Mode */
+  :root.dark,
+  [data-theme="dark"] {
+    --background: #0B0F17;
+    --background-2: #141B26;
+    --foreground: #FFFFFF;
+    
+    --card: #182232;
+    --card-foreground: #FFFFFF;
+    --popover: #182232;
+    --popover-foreground: #FFFFFF;
+    
+    /* High-contrast amber-gold primary elements */
+    --primary: #E5A93C;
+    --primary-foreground: #0B0F17;
+    
+    --secondary: #243348;
+    --secondary-foreground: #FFFFFF;
+    
+    --champagne: #E5A93C;
+    --champagne-foreground: #0B0F17;
+    
+    --muted: #1E2B3E;
+    --muted-foreground: #A8B8CC;
+    --accent: #243348;
+    --accent-foreground: #FFFFFF;
+    
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+    
+    --border: #3A4C66;
+    --input: #4A5F7D;
+    --ring: #E5A93C;
+    
+    --safe: #22C55E;
+    --medium: #F59E0B;
+    --high: #EF4444;
+    --steel: #94A3B8;
+    
+    --glass: rgba(24, 34, 50, 0.96);
+    --glass-border: #3A4C66;
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.4);
+    --shadow-button: 0 4px 16px rgba(229, 169, 60, 0.35);
+  }
+
+  body {
+    background-color: var(--background);
+    background-image: 
+      radial-gradient(1000px 500px at 15% 0%, rgba(215, 204, 200, 0.45), transparent 60%),
+      radial-gradient(800px 400px at 85% 10%, rgba(161, 136, 127, 0.22), transparent 60%),
+      linear-gradient(180deg, #F5F5F5 0%, #EAE5E2 100%);
+    background-attachment: fixed;
+    color: var(--foreground);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+  }
+
+  :root.dark body,
+  [data-theme="dark"] body {
+    background-color: #0B0F17;
+    background-image: 
+      radial-gradient(1000px 500px at 15% 0%, rgba(30, 43, 62, 0.6), transparent 60%),
+      radial-gradient(800px 400px at 85% 10%, rgba(24, 34, 50, 0.8), transparent 60%),
+      linear-gradient(180deg, #0B0F17 0%, #141B26 100%);
+    color: #FFFFFF;
+  }
+
+  /* High Contrast Accessibility Enhancement Class (WCAG AAA) */
+  .high-contrast * {
+    font-weight: 550 !important;
+  }
+  .high-contrast button,
+  .high-contrast a,
+  .high-contrast input {
+    border-width: 2px !important;
+  }
+
+  /* CRITICAL: Input Typing Visibility Standard across all forms */
+  input, textarea, select {
+    color: #302824 !important;
+    background-color: #EFEBE9;
+    border-color: #BCAAA4;
+    caret-color: #8D6E63;
+  }
+  input::placeholder, textarea::placeholder {
+    color: #A1887F !important;
+    opacity: 0.85;
+  }
+
+  /* Dark mode input visibility enhancement */
+  :root.dark input:not(.traders-space input),
+  :root.dark textarea:not(.traders-space textarea),
+  :root.dark select:not(.traders-space select),
+  [data-theme="dark"] input:not(.traders-space input),
+  [data-theme="dark"] textarea:not(.traders-space textarea),
+  [data-theme="dark"] select:not(.traders-space select) {
+    color: #FFFFFF !important;
+    background-color: #182232 !important;
+    border-color: #3A4C66 !important;
+    caret-color: #E5A93C !important;
+  }
+  :root.dark input::placeholder,
+  :root.dark textarea::placeholder,
+  [data-theme="dark"] input::placeholder,
+  [data-theme="dark"] textarea::placeholder {
+    color: #A8B8CC !important;
+  }
+
+  /* Traders Space: User-typed text MUST appear in WHITE (#FFFFFF) with dark navy background */
+  .traders-space input,
+  .traders-space textarea,
+  .traders-space select {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: #0B1320 !important;
+    border-color: #52758F !important;
+    caret-color: #20C9A6 !important;
+  }
+  .traders-space input::placeholder,
+  .traders-space textarea::placeholder {
+    color: #A9C4D8 !important;
+    -webkit-text-fill-color: #A9C4D8 !important;
+    opacity: 0.75 !important;
+  }
+  .traders-space select option {
+    background-color: #14263D !important;
+    color: #FFFFFF !important;
+  }
+  .traders-space input[type="checkbox"] {
+    background-color: transparent !important;
+    accent-color: #20C9A6 !important;
+  }
+}
+
+.font-display {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glass Cards & Containers */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--card-shadow);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #8D6E63 0%, #302824 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-brand {
+  background: linear-gradient(135deg, #8D6E63 0%, #A1887F 100%);
+}
+
+.text-champagne {
+  color: #8D6E63;
+}
+
+.bg-champagne {
+  background-color: #8D6E63;
+}
+
+.border-champagne {
+  border-color: #8D6E63;
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-button);
+}
+
+.shadow-glow-gold {
+  box-shadow: 0 4px 14px rgba(141, 110, 99, 0.28);
+}
+
+.text-safe {
+  color: var(--safe);
+}
+
+.bg-safe {
+  background-color: var(--safe);
+}
+
+.border-safe {
+  border-color: var(--safe);
+}
+
+.text-medium {
+  color: var(--medium);
+}
+
+.bg-medium {
+  background-color: var(--medium);
+}
+
+.border-medium {
+  border-color: var(--medium);
+}
+
+.text-high {
+  color: var(--high);
+}
+
+.bg-high {
+  background-color: var(--high);
+}
+
+.border-high {
+  border-color: var(--high);
+}
+
+.text-cyan {
+  color: var(--steel);
+}
+
+.bg-cyan {
+  background-color: var(--steel);
+}
+
+.border-cyan {
+  border-color: var(--steel);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.border-secondary {
+  border-color: var(--secondary);
+}
+
+@keyframes scan-laser {
+  0%, 100% {
+    top: 8%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 90%;
+    opacity: 1;
+  }
+}
+
+.animate-scan {
+  animation: scan-laser 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+
